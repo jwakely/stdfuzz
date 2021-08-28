@@ -11,3 +11,4 @@ add_link_options(-fsanitize=fuzzer,address,undefined)
 # add_compile_options(-stdlib=libc++)
 
 add_executable(charconv charconv.cpp)
+add_executable(regex regex.cpp)
