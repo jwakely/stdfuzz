@@ -18,4 +18,5 @@ Finds issues in all three major implementations.
 
 ## format
 ### libstdc++ (gnu)
-* https://gcc.gnu.org/bugzilla/show_bug.cgi?id=110860 overflow in the following: ```std::format("{:f}",2e304)```
+* https://gcc.gnu.org/bugzilla/show_bug.cgi?id=110860 integer overflow in the following: ```std::format("{:f}",2e304)```
+* https://gcc.gnu.org/bugzilla/show_bug.cgi?id=110862 out of bands read on ```"{0:{0}"```
