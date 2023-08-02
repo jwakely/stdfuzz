@@ -8,8 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_compile_options(-fsanitize=fuzzer,address,undefined)
 add_link_options(-fsanitize=fuzzer,address,undefined)
 
-add_compile_options(-stdlib=libc++ -g)
-add_link_options(-stdlib=libc++)
+#add_compile_options(-stdlib=libc++ -g)
+#add_link_options(-stdlib=libc++)
 
 add_executable(charconv charconv.cpp)
 add_executable(regex regex.cpp)
