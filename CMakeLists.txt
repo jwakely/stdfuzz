@@ -13,3 +13,5 @@ add_link_options(-fsanitize=fuzzer,address,undefined -fno-sanitize-recover=all)
 
 add_executable(charconv charconv.cpp)
 add_executable(regex regex.cpp)
+
+add_subdirectory(format)
