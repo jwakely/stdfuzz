@@ -65,8 +65,10 @@ invoke_fmt(const uint8_t* data, size_t size)
   size -= fixed_size;
 
   const auto* chardata = reinterpret_cast<const char*>(data);
-  std::string format_string{ chardata, chardata + size };
-  format_string.append(10, '}');
+  //  std::string format_string{ chardata, chardata + size };
+
+  //  format_string.append(10, '}');
+  const std::string_view format_string{ chardata, size };
 
   try {
     std::vector<char> buf(2000);
