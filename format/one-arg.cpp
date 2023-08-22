@@ -133,6 +133,9 @@ LLVMFuzzerTestOneInput(const uint8_t* data, size_t size)
       case 12:
         invoke_fmt<long double>(data, size);
         break;
+      case 13:
+        invoke_fmt<void*>(data, size);
+        break;
     }
   } catch (...) {
   }
