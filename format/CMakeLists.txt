@@ -1,6 +1,7 @@
 # assume using clang with a local gcc trunk (currently gcc 14)  installation
 set(GCCDIR $ENV{HOME}/local/)
 foreach(fuzzer one-arg one-warg)
+foreach(fuzzer chrono-duration one-arg one-warg)
     add_executable(${fuzzer} ${fuzzer}.cpp)
     target_compile_options(${fuzzer} PUBLIC -nostdinc++ -nostdinc)
     # these can be obtained by executing  ~/local/bin/g++ -E -Wp,-v - </dev/null
