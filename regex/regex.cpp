@@ -51,11 +51,12 @@ LLVMFuzzerTestOneInput(const uint8_t* data, size_t size)
   size -= option_bytes;
 
   const std::string_view regex_pattern{ (const char*)data, regex_size };
-  const std::string_view subject{ (const char*)data + regex_size,
-                                  size - regex_size };
+  const std::string subject{ (const char*)data + regex_size,
+                             size - regex_size };
 
   try {
     std::regex regex{ regex_pattern.data(), regex_pattern.size(), flags };
+    [[maybe_unused]] bool ignored = std::regex_search(subject, regex);
   } catch (...) {
   }
   return 0;
