@@ -20,6 +20,7 @@ set(fuzzersrcfiles
     format/one-warg.cpp
     format/two-args.cpp
     regex/regex.cpp
+    set_like/set_differential.cpp
 )
 
 # assume using clang with a local gcc trunk (currently gcc 14) installation
