@@ -1,4 +1,6 @@
 // Copyright (c) 2023, Paul Dreik
+// Licensed under Boost software license 1.0
+// SPDX-License-Identifier: BSL-1.0
 
 #include <cstdint>
 #include <cstring>

@@ -1,3 +1,7 @@
+# Copyright Paul Dreik 2023
+# Licensed under Boost software license 1.0
+# SPDX-License-Identifier: BSL-1.0
+
 cmake_minimum_required(VERSION 3.25)
 
 project(stdfuzz)
