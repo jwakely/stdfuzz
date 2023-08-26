@@ -1,7 +1,7 @@
-# assume using clang with a local gcc trunk (currently gcc 14)  installation
+# assume using clang with a local gcc trunk (currently gcc 14) installation
 set(GCCDIR $ENV{HOME}/local/)
-foreach(fuzzer chrono-duration one-arg one-warg)
-    add_executable(${fuzzer} ${fuzzer}.cpp)
+foreach(fuzzer chrono-duration chrono-parse one-arg one-warg two-args)
+    add_executable(${fuzzer} ${fuzzer}.cpp limitediterator.h fuzzcombine.h)
     target_compile_options(${fuzzer} PUBLIC -nostdinc++ -nostdinc)
     # these can be obtained by executing  ~/local/bin/g++ -E -Wp,-v - </dev/null
     target_compile_options(${fuzzer} PUBLIC "SHELL:-cxx-isystem ${GCCDIR}/include/c++/14.0.0/" )
@@ -13,7 +13,7 @@ foreach(fuzzer chrono-duration one-arg one-warg)
     target_compile_options(${fuzzer} PUBLIC "SHELL:-cxx-isystem /usr/include/x86_64-linux-gnu")
     target_compile_options(${fuzzer} PUBLIC "SHELL:-cxx-isystem /usr/include/")
     # this is needed for clang<=16
-    target_compile_definitions(${fuzzer} PUBLIC __cplusplus=202302L)
+#    target_compile_definitions(${fuzzer} PUBLIC __cplusplus=202302L)
     target_link_libraries(${fuzzer} PUBLIC ${GCCDIR}/lib64/libstdc++.a)
 endforeach()
 
