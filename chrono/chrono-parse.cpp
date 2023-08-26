@@ -25,7 +25,6 @@ LLVMFuzzerTestOneInput(const uint8_t* data, size_t size)
         std::string parse_buffer = fuzzcombiner->get_half_remainder_as_string();
         // make a separate allocation to increase likelihood of buffer
         // under/overflow
-
         const auto raw_fmt = fuzzcombiner->get_remainder();
         std::string format_string{ raw_fmt.data(),
                                    raw_fmt.data() + raw_fmt.size() };

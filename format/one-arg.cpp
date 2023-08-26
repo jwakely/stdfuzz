@@ -9,7 +9,6 @@
 #include <string_view>
 #include <vector>
 
-
 constexpr std::size_t fixed_size = 16;
 
 struct LimitedIterator
