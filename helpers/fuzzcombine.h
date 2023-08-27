@@ -37,6 +37,8 @@ struct FuzzCombiner
   {
   }
 
+  [[nodiscard]] bool is_empty() const { return m_size == 0; }
+
   /**
    * Based on the contents of fuzz data:
    * - selects one of the types from Argset1 and instantiates it
@@ -87,6 +89,19 @@ struct FuzzCombiner
     return { beg, end };
   }
 
+  /**
+   * @brief consume_byte_in_range
+   * returns a byte in range min to max (inclusive)
+   * @return
+   */
+  template<char min, char max>
+  char consume_byte_in_range() {
+    static_assert(min<max);
+    assert(!is_empty());
+    constexpr unsigned span=max-min+1;
+    const unsigned input=consume_byte();
+    return min+(input%span);
+  }
 private:
   /**
    * @brief combine invokes callback with a dynamically selected
@@ -142,6 +157,7 @@ private:
     return runtime_selected_index;
   }
 
+
   char consume_byte()
   {
     assert(!is_empty());
@@ -169,7 +185,6 @@ private:
     return value;
   }
 
-  [[nodiscard]] bool is_empty() const { return m_size == 0; }
   const uint8_t* m_data;
   size_t m_size;
 };
