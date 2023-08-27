@@ -44,7 +44,7 @@ LLVMFuzzerTestOneInput(const uint8_t* data, size_t size)
   }
   if (data[2] & (1 << 4)) {
     // too new, not supported
-    // flags |= std::regex::multiline;
+    flags |= std::regex::multiline;
   }
 
   data += option_bytes;
