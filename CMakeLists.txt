@@ -14,6 +14,7 @@ add_link_options(-fsanitize=fuzzer,address,undefined -fno-sanitize-recover=all)
 
 set(fuzzersrcfiles
     charconv/charconv.cpp
+    charconv/roundtrip-floatingpoint.cpp
     charconv/roundtrip-int.cpp
     chrono/chrono-parse.cpp
     format/chrono-duration.cpp
