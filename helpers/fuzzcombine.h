@@ -125,7 +125,7 @@ private:
     auto instantiate_all = [&]<std::size_t... I>(std::index_sequence<I...>) {
       auto maybe_act =
         [&]<std::size_t Index>(
-          std::integral_constant<std::size_t, Index> compile_time_index)
+          std::integral_constant<std::size_t, Index> /*compile_time_index*/)
         -> bool {
         if (Index == runtime_selected_index) {
           using Value =
