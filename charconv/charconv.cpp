@@ -32,7 +32,7 @@ LLVMFuzzerTestOneInput(const uint8_t* data, size_t size)
       std::chars_format::hex,
       std::chars_format::general,
     };
-    const auto option = options[data[2] & 0b11];
+    [[maybe_unused]] const auto option = options[data[2] & 0b11];
 
     data += N;
     size -= N;
@@ -43,7 +43,7 @@ LLVMFuzzerTestOneInput(const uint8_t* data, size_t size)
       return whatever;
     };
 
-    auto invoke_float = [&](auto dummy) {
+    auto invoke_float = [&](auto /*dummy*/) {
 #if 0
       auto whatever = std::from_chars(
         (const char*)data, (const char*)data + size, dummy, option);

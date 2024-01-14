@@ -17,12 +17,10 @@
 namespace detail {
 template<typename>
 struct is_tuple : std::false_type
-{
-};
+{};
 template<typename... T>
 struct is_tuple<std::tuple<T...>> : std::true_type
-{
-};
+{};
 }
 
 template<typename T>
@@ -71,7 +69,6 @@ struct FuzzCombiner
   /// consumes the remainder of the fuzz data
   std::vector<char> get_remainder()
   {
-    std::vector<char> ret;
     auto beg = m_data;
     auto end = beg + m_size;
     m_data = end;
@@ -81,7 +78,6 @@ struct FuzzCombiner
 
   std::string get_half_remainder_as_string()
   {
-    std::string ret;
     auto beg = m_data;
     auto end = beg + m_size / 2;
     m_data = end;
@@ -95,13 +91,15 @@ struct FuzzCombiner
    * @return
    */
   template<char min, char max>
-  char consume_byte_in_range() {
-    static_assert(min<max);
+  char consume_byte_in_range()
+  {
+    static_assert(min < max);
     assert(!is_empty());
-    constexpr unsigned span=max-min+1;
-    const unsigned input=consume_byte();
-    return min+(input%span);
+    constexpr unsigned span = max - min + 1;
+    const unsigned input = consume_byte();
+    return min + (input % span);
   }
+
 private:
   /**
    * @brief combine invokes callback with a dynamically selected
@@ -122,11 +120,10 @@ private:
     static_assert(std::max({ sizeof(ArgTypes)... }) <= fixed_size,
                   "all args must not exceed fixed_size");
     const std::size_t runtime_selected_index = select_type<Ntypes>();
-    auto instantiate_all = [&]<std::size_t... I>(std::index_sequence<I...>)
-    {
+    auto instantiate_all = [&]<std::size_t... I>(std::index_sequence<I...>) {
       auto maybe_act =
         [&]<std::size_t Index>(
-          std::integral_constant<std::size_t, Index> compile_time_index)
+          std::integral_constant<std::size_t, Index> /*compile_time_index*/)
         -> bool {
         if (Index == runtime_selected_index) {
           using Value =
@@ -156,7 +153,6 @@ private:
     const std::size_t runtime_selected_index = (consume_byte() & mask);
     return runtime_selected_index;
   }
-
 
   char consume_byte()
   {

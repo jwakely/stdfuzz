@@ -16,8 +16,6 @@
 #include <utility>
 #include <vector>
 
-constexpr std::size_t fixed_size = 16;
-
 namespace {
 template<typename T>
 constexpr std::string_view

@@ -28,7 +28,7 @@ LLVMFuzzerTestOneInput(const uint8_t* data, size_t size)
 
     fuzzdata.combine_args<ArgTypes1, ArgTypes2>(
       []<typename Arg1, typename Arg2>(
-        Arg1 arg1, Arg2 arg2, FuzzCombiner* fuzzcombiner) {
+        Arg1 arg1, Arg2 /*arg2*/, FuzzCombiner* fuzzcombiner) {
         // make a separate allocation to increase likelihood of buffer
         // under/overflow
         const auto raw_fmt = fuzzcombiner->get_remainder();
@@ -37,10 +37,11 @@ LLVMFuzzerTestOneInput(const uint8_t* data, size_t size)
         std::vector<char> buf(2000);
         using Duration = std::chrono::duration<Arg1, Arg2>;
 
+        Duration darg1{ arg1 };
         [[maybe_unused]] auto ignored =
           std::vformat_to(LimitedIterator(buf.data(), buf.size() - 2),
                           format_string,
-                          std::make_format_args(Duration{ arg1 }));
+                          std::make_format_args(darg1));
       });
   } catch (...) {
   }
