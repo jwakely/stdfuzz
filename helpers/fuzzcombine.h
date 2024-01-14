@@ -69,7 +69,6 @@ struct FuzzCombiner
   /// consumes the remainder of the fuzz data
   std::vector<char> get_remainder()
   {
-    std::vector<char> ret;
     auto beg = m_data;
     auto end = beg + m_size;
     m_data = end;
@@ -79,7 +78,6 @@ struct FuzzCombiner
 
   std::string get_half_remainder_as_string()
   {
-    std::string ret;
     auto beg = m_data;
     auto end = beg + m_size / 2;
     m_data = end;
